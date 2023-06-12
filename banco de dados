@@ -1,0 +1,245 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Tempo de geração: 12-Jun-2023 às 22:15
+-- Versão do servidor: 10.4.22-MariaDB
+-- versão do PHP: 7.4.27
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Banco de dados: `estoque`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `chave`
+--
+
+CREATE TABLE `chave` (
+  `id_chave` int(11) NOT NULL,
+  `sala` varchar(180) DEFAULT NULL,
+  `pessoaRetirada` varchar(180) DEFAULT NULL,
+  `dataRetirada` date DEFAULT NULL,
+  `estado` varchar(180) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `chave`
+--
+
+INSERT INTO `chave` (`id_chave`, `sala`, `pessoaRetirada`, `dataRetirada`, `estado`) VALUES
+(3, '242', NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `devolucao`
+--
+
+CREATE TABLE `devolucao` (
+  `id_devolucao` int(11) NOT NULL,
+  `dataDevolucao` date DEFAULT NULL,
+  `itemDevolucao` varchar(180) DEFAULT NULL,
+  `unidadeDevolucao` varchar(180) DEFAULT NULL,
+  `qntdDevolucao` int(11) DEFAULT NULL,
+  `categoriaDevolucao` varchar(200) DEFAULT NULL,
+  `motivoDevolucao` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `empr_pr`
+--
+
+CREATE TABLE `empr_pr` (
+  `id_emprPR` int(11) NOT NULL,
+  `mutuario_empr` varchar(50) NOT NULL,
+  `quantidade_empr` int(8) NOT NULL,
+  `data_empr` date NOT NULL,
+  `produto_empr` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `item`
+--
+
+CREATE TABLE `item` (
+  `id_item` int(11) NOT NULL,
+  `dataEntrada` date DEFAULT NULL,
+  `material` varchar(180) DEFAULT NULL,
+  `unidade` varchar(180) DEFAULT NULL,
+  `quantidade` int(11) DEFAULT NULL,
+  `fornecedor` varchar(180) DEFAULT NULL,
+  `tipo` varchar(200) DEFAULT NULL,
+  `categoria` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `item`
+--
+
+INSERT INTO `item` (`id_item`, `dataEntrada`, `material`, `unidade`, `quantidade`, `fornecedor`, `tipo`, `categoria`) VALUES
+(1, '2023-06-12', 'Papel', 'caixa', 0, 'Super Plásticos', 'naoEmprestimo', 'limpeza'),
+(2, '2023-06-12', 'Papel', 'avulso', 97, 'Super Plásticos', 'naoEmprestimo', 'ferramenta'),
+(3, '2023-06-12', 'Papel', 'avulso', 100, 'Super Plásticos', 'naoEmprestimo', 'ferramenta');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `itens_retirados`
+--
+
+CREATE TABLE `itens_retirados` (
+  `id_retirada` int(11) NOT NULL,
+  `id_item` int(11) NOT NULL,
+  `material` varchar(100) NOT NULL,
+  `quantidade_retirada` int(11) NOT NULL,
+  `data_retirada` timestamp NOT NULL DEFAULT current_timestamp(),
+  `resp_material` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `itens_retirados`
+--
+
+INSERT INTO `itens_retirados` (`id_retirada`, `id_item`, `material`, `quantidade_retirada`, `data_retirada`, `resp_material`) VALUES
+(1, 1, 'Papel', 2, '2023-06-12 17:33:53', NULL),
+(2, 1, 'Papel', 4, '2023-06-12 17:36:29', NULL),
+(3, 1, 'Papel', 1, '2023-06-12 17:40:24', NULL),
+(4, 1, 'Papel', 5, '2023-06-12 17:54:55', NULL),
+(5, 2, 'Papel', 3, '2023-06-12 20:02:02', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id_usuario` int(11) NOT NULL,
+  `nome` varchar(180) DEFAULT NULL,
+  `email` varchar(200) DEFAULT NULL,
+  `cpf` varchar(11) DEFAULT NULL,
+  `senha` varchar(180) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `cpf`, `senha`) VALUES
+(1, 'renisson', 'samueloliveira7000@hotmail.com', '0450505505', '123'),
+(2, 'samuel', 'u@u.com', '120202023', '123'),
+(3, 'monica', 'monica@gmail.com', '12243456465', '12345');
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices para tabela `chave`
+--
+ALTER TABLE `chave`
+  ADD PRIMARY KEY (`id_chave`);
+
+--
+-- Índices para tabela `devolucao`
+--
+ALTER TABLE `devolucao`
+  ADD PRIMARY KEY (`id_devolucao`);
+
+--
+-- Índices para tabela `empr_pr`
+--
+ALTER TABLE `empr_pr`
+  ADD PRIMARY KEY (`id_emprPR`);
+
+--
+-- Índices para tabela `item`
+--
+ALTER TABLE `item`
+  ADD PRIMARY KEY (`id_item`);
+
+--
+-- Índices para tabela `itens_retirados`
+--
+ALTER TABLE `itens_retirados`
+  ADD PRIMARY KEY (`id_retirada`),
+  ADD KEY `id_item` (`id_item`);
+
+--
+-- Índices para tabela `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id_usuario`),
+  ADD UNIQUE KEY `cpf` (`cpf`);
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `chave`
+--
+ALTER TABLE `chave`
+  MODIFY `id_chave` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `devolucao`
+--
+ALTER TABLE `devolucao`
+  MODIFY `id_devolucao` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `empr_pr`
+--
+ALTER TABLE `empr_pr`
+  MODIFY `id_emprPR` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `item`
+--
+ALTER TABLE `item`
+  MODIFY `id_item` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `itens_retirados`
+--
+ALTER TABLE `itens_retirados`
+  MODIFY `id_retirada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Restrições para despejos de tabelas
+--
+
+--
+-- Limitadores para a tabela `itens_retirados`
+--
+ALTER TABLE `itens_retirados`
+  ADD CONSTRAINT `itens_retirados_ibfk_1` FOREIGN KEY (`id_item`) REFERENCES `item` (`id_item`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
