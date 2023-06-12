@@ -1,0 +1,112 @@
+
+.navbar {
+    background-color: black;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+}
+    
+.botoes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    background-color: #918D8A;
+}
+
+.button {
+    display: inline-block;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px;
+    width: 120px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button:hover span {
+    padding-right: 25px;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.botaosair {
+    height: 50px;
+    width: 145px;
+    display: inline-block;
+    transition: all 0.2s ease-in;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    color: #BF7590;
+    font-weight: bold;
+    text-decoration: none;
+    background: #ffffff;
+    padding: 0.7em 1.7em;
+    font-size: 12px;
+    /* border-radius: 0.5em; */
+    border: 1px solid #e8e8e8;
+    /* box-shadow: 6px 6px 12px #c5c5c5,
+    /* -6px -6px 12px #ffffff; */  
+  	font-family: "Poppins", sans-serif;
+  	font-size: 14px;
+    line-height: 24px;
+/*    float: right; */
+} 
+
+.button2 {
+    height: 50px;
+    width: 145px;
+    display: inline-block;
+    transition: all 0.2s ease-in;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    color: #BF7590;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0.7em 1.7em;
+    font-size: 12px;
+    /* border-radius: 0.5em; */
+    background: #FADDD7;
+    border: 1px solid #FADDD7;
+    /* box-shadow: 6px 6px 12px #c5c5c5,
+               /* -6px -6px 12px #ffffff; */  
+  	font-family: "Poppins", sans-serif;
+  	font-size: 14px;
+    line-height: 24px;
+  } 
